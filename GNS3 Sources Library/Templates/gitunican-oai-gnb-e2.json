@@ -1,0 +1,28 @@
+﻿{
+    "adapters":  1,
+    "builtin":  false,
+    "category":  "guest",
+    "compute_id":  "vm",
+    "console_auto_start":  false,
+    "console_http_path":  "/",
+    "console_http_port":  80,
+    "console_resolution":  "1024x768",
+    "console_type":  "telnet",
+    "custom_adapters":  [
+
+                        ],
+    "default_name_format":  "{name}-{0}",
+    "environment":  "",
+    "extra_hosts":  "",
+    "extra_volumes":  [
+
+                      ],
+    "image":  "gitunican/oai-gnb-e2:latest",
+    "mac_address":  "",
+    "name":  "gitunican-oai-gnb-e2",
+    "start_command":  "",
+    "symbol":  ":/symbols/docker_guest.svg",
+    "template_id":  "f6f061fe-57b9-4dae-acd5-cab5683ce48b",
+    "template_type":  "docker",
+    "usage":  ""
+}

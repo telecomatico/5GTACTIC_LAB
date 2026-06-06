@@ -1,0 +1,100 @@
+info:
+  version: 1.0.3
+  description: SMF Configuration
+
+configuration:
+  smfName: SMF
+  sbi:
+    scheme: http
+    registerIPv4: 10.10.10.155
+    bindingIPv4: 10.10.10.155
+    port: 8000
+    tls:
+      key: cert/smf.key
+      pem: cert/smf.pem
+
+  snssaiInfos:
+    - sNssai:
+        sst: 1
+        sd: 010203
+      dnnInfos:
+        - dnn: internet
+          dns:
+            ipv4: 8.8.8.8
+        - dnn: internet2
+          dns:
+            ipv4: 8.8.8.8
+
+  plmnList:
+    - mcc: "208"
+      mnc: "93"
+
+  locality: area1
+
+  pfcp:
+    nodeID: 10.10.10.155
+    listenAddr: 10.10.10.155
+    externalAddr: 10.10.10.155
+
+  userplaneInformation:
+    upNodes:
+      gNB1:
+        type: AN
+        an_ip: 10.10.10.7
+
+      UPF1:
+        type: UPF
+        nodeID: 10.10.10.111
+        addr: 10.10.10.111
+        sNssaiUpfInfos:
+          - sNssai:
+              sst: 1
+              sd: 010203
+            dnnUpfInfoList:
+              - dnn: internet
+                pools:
+                  - cidr: 10.60.0.0/16
+                staticPools: []
+        interfaces:
+          - interfaceType: N3
+            endpoints:
+              - 10.10.10.111
+            networkInstances:
+              - internet
+
+      UPF2:
+        type: UPF
+        nodeID: 10.10.10.222
+        addr: 10.10.10.222
+        sNssaiUpfInfos:
+          - sNssai:
+              sst: 1
+              sd: 010203
+            dnnUpfInfoList:
+              - dnn: internet2
+                pools:
+                  - cidr: 10.61.0.0/16
+                staticPools: []
+        interfaces:
+          - interfaceType: N3
+            endpoints:
+              - 10.10.10.222
+            networkInstances:
+              - internet2
+
+    links:
+      - A: gNB1
+        B: UPF1
+      - A: gNB1
+        B: UPF2
+
+  ueRoutingFile: ./config/uerouting.yaml
+  urrPeriod: 10
+  urrThreshold: 1000000
+  requestedUnit: 1000000
+  ulcl: false
+
+logger:
+  enable: true
+  level: info
+  reportCaller: false

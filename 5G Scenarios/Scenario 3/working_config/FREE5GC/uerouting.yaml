@@ -1,0 +1,23 @@
+info:
+  version: 1.0.7
+  description: UE Routing Configuration
+
+ueRoutingInfo:
+  UE1:
+    members:
+      - imsi-208930000000001
+    topology:
+      - A: gNB1
+        B: UPF1
+    specificPath:
+      - dest: 10.60.0.0/16
+        path: [UPF1]
+  UE2:
+    members:
+      - imsi-208930000000002
+    topology:
+      - A: gNB1
+        B: UPF2
+    specificPath:
+      - dest: 10.61.0.0/16
+        path: [UPF2]

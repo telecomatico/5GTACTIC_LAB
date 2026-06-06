@@ -1,0 +1,28 @@
+﻿{
+    "adapters":  2,
+    "builtin":  false,
+    "category":  "guest",
+    "compute_id":  "vm",
+    "console_auto_start":  false,
+    "console_http_path":  "/",
+    "console_http_port":  80,
+    "console_resolution":  "1024x768",
+    "console_type":  "telnet",
+    "custom_adapters":  [
+
+                        ],
+    "default_name_format":  "{name}-{0}",
+    "environment":  "#FORCE_SEED=1",
+    "extra_hosts":  "",
+    "extra_volumes":  [
+
+                      ],
+    "image":  "gitunican/upf-free5gc:seeded",
+    "mac_address":  null,
+    "name":  "gitunican-UPF-free5gc",
+    "start_command":  "/bin/bash",
+    "symbol":  "Free5GC_UPF.png",
+    "template_id":  "d7353971-730b-4b18-8e83-3e488a2c6f99",
+    "template_type":  "docker",
+    "usage":  "ANTES DE ARRANCAR\n\nHay que configurar la red, eth0 con IP estatica hacia el CORE y eth1 con DHCP hacial NAT\n\nPara obtener una consola funcional podemos especificar /bin/bash en \"Start Command\n\nPara copiar las configuraciones de partida cada vez que se arranque, hay que descomentar en las variables de entorno FORCE_SEED=1 "
+}

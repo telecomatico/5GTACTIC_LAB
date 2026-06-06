@@ -1,0 +1,28 @@
+﻿{
+    "adapters":  1,
+    "builtin":  false,
+    "category":  "guest",
+    "compute_id":  "vm",
+    "console_auto_start":  false,
+    "console_http_path":  "/",
+    "console_http_port":  80,
+    "console_resolution":  "1024x768",
+    "console_type":  "vnc",
+    "custom_adapters":  [
+
+                        ],
+    "default_name_format":  "{name}-{0}",
+    "environment":  "",
+    "extra_hosts":  "",
+    "extra_volumes":  [
+
+                      ],
+    "image":  "gns3/webterm:latest",
+    "mac_address":  "",
+    "name":  "webterm",
+    "start_command":  "",
+    "symbol":  "firefox.svg",
+    "template_id":  "33789282-9e2f-40e0-840e-a8d629a07d32",
+    "template_type":  "docker",
+    "usage":  "The /root directory is persistent."
+}

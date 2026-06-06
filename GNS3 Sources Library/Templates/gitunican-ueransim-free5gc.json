@@ -1,0 +1,28 @@
+﻿{
+    "adapters":  1,
+    "builtin":  false,
+    "category":  "guest",
+    "compute_id":  "vm",
+    "console_auto_start":  false,
+    "console_http_path":  "/",
+    "console_http_port":  80,
+    "console_resolution":  "1024x768",
+    "console_type":  "telnet",
+    "custom_adapters":  [
+
+                        ],
+    "default_name_format":  "{name}-{0}",
+    "environment":  "FORCE_SEED=1",
+    "extra_hosts":  "",
+    "extra_volumes":  [
+
+                      ],
+    "image":  "gitunican/ueransim-free5gc:seeded",
+    "mac_address":  null,
+    "name":  "gitunican-ueransim-free5gc",
+    "start_command":  "/bin/bash",
+    "symbol":  "UERANSIM.png",
+    "template_id":  "a641ca67-0d02-4092-a92a-658c9744973b",
+    "template_type":  "docker",
+    "usage":  ""
+}

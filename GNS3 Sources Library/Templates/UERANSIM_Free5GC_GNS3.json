@@ -1,0 +1,27 @@
+﻿{
+    "adapter_type":  "Intel PRO/1000 MT Desktop (82540EM)",
+    "adapters":  2,
+    "builtin":  false,
+    "category":  "guest",
+    "compute_id":  "local",
+    "console_auto_start":  false,
+    "console_type":  "none",
+    "custom_adapters":  [
+
+                        ],
+    "default_name_format":  "{name}-{0}",
+    "first_port_name":  "",
+    "headless":  false,
+    "linked_clone":  false,
+    "name":  "UERANSIM_Free5GC_GNS3",
+    "on_close":  "power_off",
+    "port_name_format":  "Ethernet{0}",
+    "port_segment_size":  0,
+    "ram":  2048,
+    "symbol":  "UERANSIM.png",
+    "template_id":  "58aa4226-50d4-4459-bdbf-9b62383829c5",
+    "template_type":  "virtualbox",
+    "usage":  "",
+    "use_any_adapter":  true,
+    "vmname":  "UERANSIM_Free5GC_GNS3"
+}

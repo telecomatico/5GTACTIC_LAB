@@ -1,0 +1,20 @@
+info:
+  version: 1.0.0
+  description: UE Routing Configuration
+
+ueRoutingInfo:
+  - SUPI: imsi-208930000000001
+    AN: gNB1
+    PathList:
+      - DestinationIP: 0.0.0.0/0
+        DNN: internet
+        Path:
+          - UPF1
+
+  - SUPI: imsi-208930000000002
+    AN: gNB1
+    PathList:
+      - DestinationIP: 0.0.0.0/0
+        DNN: internet2
+        Path:
+          - UPF2

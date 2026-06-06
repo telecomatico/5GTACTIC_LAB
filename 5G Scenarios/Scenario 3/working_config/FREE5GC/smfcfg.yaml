@@ -1,0 +1,122 @@
+info:
+  version: 1.0.7
+  description: SMFConfigurationEscenario3
+
+configuration:
+  smfName: SMF
+
+  sbi:
+    scheme: http
+    registerIPv4: 127.0.0.2
+    bindingIPv4: 127.0.0.2
+    port: 8000
+    tls:
+      key: cert/smf.key
+      pem: cert/smf.pem
+
+  serviceNameList:
+    - nsmf-pdusession
+    - nsmf-event-exposure
+    - nsmf-oam
+
+  snssaiInfos:
+    - sNssai:
+        sst: 1
+        sd: 010203
+      dnnInfos:
+        - dnn: internet
+          dns:
+            ipv4: 8.8.8.8
+        - dnn: internet2
+          dns:
+            ipv4: 8.8.8.8
+
+  plmnList:
+    - mcc: 208
+      mnc: 93
+
+  locality: area1
+
+  pfcp:
+    nodeID: 10.10.10.155
+    listenAddr: 10.10.10.155
+    externalAddr: 10.10.10.155
+
+  userplaneInformation:
+    upNodes:
+      gNB1:
+        type: AN
+        an_ip: 10.10.10.7
+
+      UPF1:
+        type: UPF
+        nodeID: 10.10.10.20
+        addr: 10.10.10.20
+        sNssaiUpfInfos:
+          - sNssai:
+              sst: 1
+              sd: 010203
+            dnnUpfInfoList:
+              - dnn: internet
+                pools:
+                  - cidr: 10.60.0.0/16
+                staticPools: []
+        interfaces:
+          - interfaceType: N3
+            endpoints:
+              - 10.10.10.20
+            networkInstances:
+              - internet
+
+      UPF2:
+        type: UPF
+        nodeID: 10.10.10.21
+        addr: 10.10.10.21
+        sNssaiUpfInfos:
+          - sNssai:
+              sst: 1
+              sd: 010203
+            dnnUpfInfoList:
+              - dnn: internet2
+                pools:
+                  - cidr: 10.61.0.0/16
+                staticPools: []
+        interfaces:
+          - interfaceType: N3
+            endpoints:
+              - 10.10.10.21
+            networkInstances:
+              - internet2
+
+    links:
+      - A: gNB1
+        B: UPF1
+      - A: gNB1
+        B: UPF2
+
+  ueRoutingFile: ./config/uerouting.yaml
+  urrPeriod: 10
+  urrThreshold: 1000000
+  requestedUnit: 1000000
+  ulcl: false
+
+  t3591:
+    enable: true
+    expireTime: 16s
+    maxRetryTimes: 3
+
+  t3592:
+    enable: true
+    expireTime: 16s
+    maxRetryTimes: 3
+
+  nrfUri: http://127.0.0.10:8000
+  nrfCertPem: cert/nrf.pem
+  urrPeriod: 30
+  urrThreshold: 500000
+  requestedUnit: 1000
+
+logger:
+  enable: true
+  level: info
+  reportCaller: false

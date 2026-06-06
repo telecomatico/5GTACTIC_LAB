@@ -1,0 +1,27 @@
+﻿{
+    "adapter_type":  "Intel PRO/1000 MT Desktop (82540EM)",
+    "adapters":  2,
+    "builtin":  false,
+    "category":  "guest",
+    "compute_id":  "local",
+    "console_auto_start":  false,
+    "console_type":  "none",
+    "custom_adapters":  [
+
+                        ],
+    "default_name_format":  "{name}-{0}",
+    "first_port_name":  "",
+    "headless":  false,
+    "linked_clone":  false,
+    "name":  "Free5G_GNS3",
+    "on_close":  "power_off",
+    "port_name_format":  "Ethernet{0}",
+    "port_segment_size":  0,
+    "ram":  2048,
+    "symbol":  "Free5GC.png",
+    "template_id":  "0ec32192-3b86-48b4-afe4-3734e118ca30",
+    "template_type":  "virtualbox",
+    "usage":  "",
+    "use_any_adapter":  false,
+    "vmname":  "Free5G_GNS3"
+}
