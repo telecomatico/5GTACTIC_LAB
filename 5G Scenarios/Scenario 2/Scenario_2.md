@@ -6,7 +6,7 @@ We continue testing simple configurations. In this case, the Free5GC network fun
 
 Except for the UPF, all other elements are identical to those in Scenario 1, except that the NAT is connected only to the UPF, and the VM configuration must be modified.
 
-images/161-1.png
+![](images/161-1.png)
 
 ## PREVIOUS STEP: Enable GTP5G in GNS3 VM HV and enable FORWARDING
 
@@ -36,7 +36,7 @@ IMPORTANT: Normally iptables rules are also configured here, but in this case it
 
 ## Core: FREE5GC
 
-images/161-2.png
+![](images/161-2.png)
 
 The CORE network is based on the template named Free5GC_GNS3.
 
@@ -49,7 +49,7 @@ At this point, the default route has no meaning.
 
 To launch the Core, first modify the run.sh script by commenting out the lines that start the UPF.
 
-images/161-3.png
+![](images/161-3.png)
 
 Save it as run2.sh.
 
@@ -64,11 +64,11 @@ Modify:
 
 Complete file:
 
-images/161-4.png
-images/161-5.png
-images/161-6.png
-images/161-7.png
-images/161-8.png
+![](images/161-5.png)
+![](images/161-6.png)
+![](images/161-7.png)
+![](images/161-8.png)
+
 
 IMPORTANT: Also ensure that amfcfg.yaml is updated as in Scenario 1.
 
@@ -107,7 +107,7 @@ TODO: Add a persistent volume to MongoDB to preserve subscribers.
 
 ## UPF (docker)
 
-images/161-9.png
+![](images/161-9.png)
 
 The Docker image used is gitunican/upf-free5gc:seeder.
 
@@ -136,8 +136,8 @@ Ensure the default route goes through NAT.
 
 ## UERANSIM (GNB + UE)
 
-images/161-10.png
-images/161-11.png
+![](images/161-10.png)
+![](images/161-11.png)
 
 The Docker images are the same as in Scenario 1. Configuration is identical.
 
@@ -147,4 +147,4 @@ Once connected, configure the UE default route via uesimtun0.
 
 NOTE: If ping to 8.8.8.8 fails from the UE, check the UPF default route (must go through NAT).
 
-images/161-12.png
+![](images/161-12.png)
