@@ -1,0 +1,186 @@
+local_server: "http://localhost:80"
+auth:
+   - "gns3"
+   - "gns3"
+gns3_vm_server: "192.168.200.200"
+remote_host: "192.68.200.200"
+ssh_user: "gns3"
+ssh_pass: "gns3"
+
+project_name: "Free5GC_Scenario_4_generado"
+language: "en"  # o "es"
+save_project_id: true
+save_folder: "d:\\Proyectos_Python\\GNS3_management"
+
+templates:
+  free5gc_core: "Free5G_GNS3"
+  ueransim: "gitunican-ueransim-free5gc"
+  webterm: "webterm"
+  nat: "NAT"
+  upf_seeded: "gitunican-UPF-free5gc"
+
+nodes:
+  - name: "Free5GC"
+    template: "free5gc_core"
+    x: -58
+    y: -120
+    compute_id: "local"
+    start: false
+
+  - name: "CN"
+    node_type: "ethernet_switch"
+    x: -51
+    y: 28
+    compute_id: "local"
+
+  - name: "DNN1(internet)"
+    template: "nat"
+    x: 287
+    y: 5
+    compute_id: "local"
+    start: false
+
+  - name: "webterm-webconsole"
+    template: "webterm"
+    x: -189
+    y: -159
+    compute_id: "vm"
+    start: false
+
+  - name: "DNN2(internet2)"
+    template: "nat"
+    x: 293
+    y: 122
+    compute_id: "local"
+    start: false
+
+  - name: "UPF1"
+    template: "upf_seeded"
+    x: 125
+    y: 13
+    compute_id: "vm"
+    start: false
+
+  - name: "UPF2"
+    template: "upf_seeded"
+    x: 128
+    y: 121
+    compute_id: "vm"
+    start: false
+
+  - name: "UE1"
+    template: "ueransim"
+    x: -317
+    y: 91
+    compute_id: "vm"
+    start: false
+
+  - name: "UE2"
+    template: "ueransim"
+    x: -320
+    y: 212
+    compute_id: "vm"
+    start: false
+
+  - name: "GNB"
+    template: "ueransim"
+    x: -322
+    y: -59
+    compute_id: "vm"
+    start: false
+
+links:
+  # Free5G (e1) <-> CN (e0)
+  - endpoints:
+      - {node: "Free5GC", adapter: 0, port: 0}
+      - {node: "CN", adapter: 0, port: 0}
+
+  # webterm-webconsole (eth0) <-> CN (e4)
+  - endpoints:
+      - {node: "webterm-webconsole", adapter: 0, port: 0}
+      - {node: "CN", adapter: 0, port: 4}
+
+  # CN (e3) <-> UPF1 (eth0)
+  - endpoints:
+      - {node: "CN", adapter: 0, port: 3}
+      - {node: "UPF1", adapter: 0, port: 0}
+
+  # UPF1 (eth1) <-> NDD1(internet) (nat0)
+  - endpoints:
+      - {node: "UPF1", adapter: 1, port: 0}
+      - {node: "DNN1(internet)", adapter: 0, port: 0}
+
+  # CN (e6) <-> UPF2 (eth0)
+  - endpoints:
+      - {node: "CN", adapter: 0, port: 6}
+      - {node: "UPF2", adapter: 0, port: 0}
+
+  # UPF2 (eth1) <-> DNN2(internet2) (nat0)
+  - endpoints:
+      - {node: "UPF2", adapter: 1, port: 0}
+      - {node: "DNN2(internet2)", adapter: 0, port: 0}
+
+  # GNB (eth0) <-> CN (e2)
+  - endpoints:
+      - {node: "GNB", adapter: 0, port: 0}
+      - {node: "CN", adapter: 0, port: 2}
+
+  # UE1 (eth0) <-> CN (e5)
+  - endpoints:
+      - {node: "UE1", adapter: 0, port: 0}
+      - {node: "CN", adapter: 0, port: 5}
+
+  # UE2 (eth0) <-> CN (e7)
+  - endpoints:
+      - {node: "UE2", adapter: 0, port: 0}
+      - {node: "CN", adapter: 0, port: 7}
+
+
+# Sección de etiquetas (drawings) extraída de Free5GC_Scenario_4.gns3
+drawings:
+  - svg: "<svg width=\"94\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">Slice: 010203</text></svg>"
+    x: 131
+    y: -42
+    z: 2
+  - svg: "<svg width=\"94\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">Slice: 112233</text></svg>"
+    x: 137
+    y: 215
+    z: 2
+  - svg: "<svg width=\"76\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">10.10.10.7</text></svg>"
+    x: -416
+    y: -33
+    z: 2
+  - svg: "<svg width=\"92\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">10.10.10.111</text></svg>"
+    x: -411
+    y: 122
+    z: 2
+  - svg: "<svg width=\"92\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">10.10.10.222</text></svg>"
+    x: -417
+    y: 247
+    z: 2
+  - svg: "<svg width=\"92\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">10.10.10.155</text></svg>"
+    x: 52
+    y: -104
+    z: 2
+  - svg: "<svg width=\"84\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">10.10.10.20</text></svg>"
+    x: 41
+    y: 25
+    z: 2
+  - svg: "<svg width=\"84\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">10.10.10.21</text></svg>"
+    x: 36
+    y: 137
+    z: 2
+    
+wait_start_timeout: 90
+wait_stop_timeout: 60
+
+post_actions:
+  stop_on_finish: true
+
+save_via_console: false
+
+
+
+
+
+

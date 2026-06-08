@@ -1,0 +1,103 @@
+local_server: "http://localhost:80"
+auth:
+   - "gns3"
+   - "gns3"
+gns3_vm_server: "192.168.200.200"
+remote_host: "192.168.200.200"
+ssh_user: "gns3"
+ssh_pass: "gns3"
+
+project_name: "Free5GC_Scenario_1_generado"
+language: "es"  # o "en"
+save_project_id: true
+save_folder: "d:\\Proyectos_Python\\GNS3_management"
+
+templates:
+  free5gc_core: "Free5G_GNS3"
+  ueransim: "gitunican-ueransim-free5gc"
+  webterm: "webterm"
+  nat: "NAT"
+
+nodes:
+  - name: "Switch1"
+    node_type: "ethernet_switch"
+    x: -42
+    y: 16
+    compute_id: "local"
+
+  - name: "Free5G_GNS3-1"
+    template: "free5gc_core"
+    x: 110
+    y: -9
+    compute_id: "local"
+    start: false
+
+  - name: "free5gc-ueransim-UE"
+    template: "ueransim"
+    x: -344
+    y: -19
+    compute_id: "vm"
+    start: false
+
+  - name: "free5gc-ueransim-GNB"
+    template: "ueransim"
+    x: -342
+    y: 100
+    compute_id: "vm"
+    start: false
+
+  - name: "webterm-1"
+    template: "webterm"
+    x: -40
+    y: -135
+    compute_id: "vm"
+    start: false
+
+  - name: "NAT1"
+    template: "nat"
+    x: 300
+    y: 1
+    compute_id: "local"
+    start: false
+
+links:
+  # Link: Free5G_GNS3-1 (e1) <-> Switch1 (e1)
+  - endpoints:
+      - {node: "Free5G_GNS3-1", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 1}
+  
+  # Link: webterm-1 (eth0) <-> Switch1 (e4)
+  - endpoints:
+      - {node: "webterm-1", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 4}
+
+  # Link: Free5G_GNS3-1 (e0) <-> NAT1 (nat0)
+  - endpoints:
+      - {node: "Free5G_GNS3-1", adapter: 1, port: 0}
+      - {node: "NAT1", adapter: 0, port: 0}
+
+  # Link: free5gc-ueransim-UE (eth0) <-> Switch1 (e2)
+  - endpoints:
+      - {node: "free5gc-ueransim-UE", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 2}
+
+  # Link: free5gc-ueransim-GNB (eth0) <-> Switch1 (e5)
+  - endpoints:
+      - {node: "free5gc-ueransim-GNB", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 5}
+
+wait_start_timeout: 90
+wait_stop_timeout: 60
+
+post_actions:
+  stop_on_finish: true
+
+save_via_console: false
+
+
+
+
+
+
+
+

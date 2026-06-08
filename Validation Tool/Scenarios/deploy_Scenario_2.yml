@@ -1,0 +1,109 @@
+local_server: "http://localhost:80"
+auth:
+   - "gns3"
+   - "gns3"
+gns3_vm_server: "192.168.200.200"
+remote_host: "192.168.200.200"
+ssh_user: "gns3"
+ssh_pass: "gns3"
+
+project_name: "Free5GC_Scenario_2_generado"
+language: "es"  # o "en"
+save_project_id: true
+save_folder: "d:\\Proyectos_Python\\GNS3_management"
+
+templates:
+  free5gc_core: "Free5G_GNS3"
+  ueransim: "gitunican-ueransim-free5gc"
+  webterm: "webterm"
+  nat: "NAT"
+  upf_custom: "gitunican-UPF-free5gc"
+
+nodes:
+  - name: "Free5G_GNS3-1"
+    template: "free5gc_core"
+    x: -58
+    y: -120
+    compute_id: "local"
+    start: false
+
+  - name: "Switch1"
+    node_type: "ethernet_switch"
+    x: -42
+    y: 16
+    compute_id: "local"
+
+  - name: "free5gc-ueransim-UE"
+    template: "ueransim"
+    x: -344
+    y: -19
+    compute_id: "vm"
+    start: false
+
+  - name: "webterm-1"
+    template: "webterm"
+    x: -189
+    y: -159
+    compute_id: "vm"
+    start: false
+
+  - name: "free5gc-ueransim-GNB"
+    template: "ueransim"
+    x: -342
+    y: 100
+    compute_id: "vm"
+    start: false
+
+  - name: "upf-free5gc-1"
+    template: "upf_custom"
+    x: 144
+    y: 127
+    compute_id: "vm"
+    start: false
+
+  - name: "NAT"
+    template: "nat"
+    x: 293
+    y: 122
+    compute_id: "local"
+    start: false
+
+links:
+  # Free5G_GNS3-1 (e1) <-> Switch1 (e1)
+  - endpoints:
+      - {node: "Free5G_GNS3-1", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 1}
+
+  # webterm-1 (eth0) <-> Switch1 (e4)
+  - endpoints:
+      - {node: "webterm-1", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 4}
+
+  # free5gc-ueransim-UE (eth0) <-> Switch1 (e2)
+  - endpoints:
+      - {node: "free5gc-ueransim-UE", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 2}
+
+  # free5gc-ueransim-GNB (eth0) <-> Switch1 (e5)
+  - endpoints:
+      - {node: "free5gc-ueransim-GNB", adapter: 0, port: 0}
+      - {node: "Switch1", adapter: 0, port: 5}
+
+  # Switch1 (e6) <-> upf-free5gc-1 (eth0)
+  - endpoints:
+      - {node: "Switch1", adapter: 0, port: 6}
+      - {node: "upf-free5gc-1", adapter: 0, port: 0}
+
+  # upf-free5gc-1 (eth1) <-> NAT2 (nat0)
+  - endpoints:
+      - {node: "upf-free5gc-1", adapter: 1, port: 0}
+      - {node: "NAT", adapter: 0, port: 0}
+
+wait_start_timeout: 90
+wait_stop_timeout: 60
+
+post_actions:
+  stop_on_finish: true
+
+save_via_console: false
+
