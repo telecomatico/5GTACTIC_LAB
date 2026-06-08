@@ -6,18 +6,17 @@
 
 # (Scenario 4) 2 Slice - Free5GC(VM)+2UPF(docker)+UERANSIM GNB(docker)/UE(docker)
 
-The topology is the same as in scenario 3, ya que la única
-diferencia es que se van a definir dos slices diferentes, una en cada
-UPF. In UPF1 la 010203 which provides access a “internet”, y en el UPF2 la
-112233, which provides access a “internet2”.
+The topology is the same as in scenario 3, with only one difference: 2 different slices, one for each
+UPF. In UPF1 we will use 010203, which provides access to “internet”, and UPF2 uses
+112233, which provides access to “internet2”.
 
 ![](images/167-1.png)
 
 The modifications are minimal.
 
-## PREVIOUS STEP: activar GTP5G en GNS3 VM HV
+## PREVIOUS STEP: To activate GTP5G into GNS3_VM
 
-y activar FORWARDING
+and configure FORWARDING
 
 We must ensure to repeat the steps indicated in [(Scenario 3)
 Free5GC(VM)+2UPF(docker)+UERANSIM
@@ -34,8 +33,8 @@ Free5GC(VM) + UPF(docker) + UERANSIM
 GNB(docker)/UE(docker)](5GTACTIC--GNS3--Training_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)_161.html),
 until reaching the SMF configuration changes.
 
-We can start del smfcfg.yaml del Scenario 3, modificando las partes
-concretas del UPF2:
+We can start del smfcfg.yaml del Scenario 3, editing concrete parts of
+UPF2:
 
 - We add the new sNssai: **<span style="color:#ff9d00;">-</span>**
   sNssai**<span style="color:#ff9d00;">:</span>**
@@ -54,7 +53,7 @@ concretas del UPF2:
 
 </div>
 
-- We modify UPF2 so that it only serves al nuevo slice:
+- We modify UPF2 so that it only serves to the new slice:
 
 <div class="codebox">
 
@@ -80,7 +79,7 @@ concretas del UPF2:
 
 </div>
 
-El fichero **smcfg.yaml** completo es el siguiente:
+Full **smcfg.yaml** file follows:
 
 <div class="codebox">
 
@@ -223,17 +222,16 @@ El fichero **smcfg.yaml** completo es el siguiente:
 
 ![](images/167-3.png)![](images/167-4.png)![](images/167-5.png)
 
-The docker containers we will use para el GNB y el UE son los que copian los
-ficheros de configuración, es decir los de [Autoconfigurar Docker
+The docker containers that we will use for GNB and UE are the same that complete all the configuration files, that is [Autoconfigurar Docker
 UERANSIM](ning_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)--Autoconfigurar_Docker_UERANSIM_164.html)
 
-The configuration is identical, so the only remaining step is arrancar los Docker
-y lanzar el GNB y el UE1.
+The configuration is identical, so the only remaining step is to start eacn Docker container
+and run GNB / UE1.
 
-For UE2 we must modify el fichero de configuración para que
-utilice un nuevo usuario que utilice el slice 112233.
+For UE2 we must modify config file 
+to use a new user into the slice 112233.
 
-Si partimos del fichero del UE2 del escenario 3, basta con modificar los
+Using the same file of UE2 from Scenario 3, we only need to modify each
 slice:
 
 <div class="codebox">
@@ -258,12 +256,12 @@ slice:
 
 </div>
 
-Arrancamos el UE2 con este nuevo fichero "free5gc-UE3.yaml.
+Start UE2 with this new file "free5gc-UE3.yaml.
 
-Hay que registrar a este tercer usuario, por lo que en el Webconsole
-we create a new profile
+You'd need to register a third user, using Webconsole 
+to create a new profile
 
-al que we assign un nuevo IMEI, y we modify el S-NSSAI para que use el
-slice SD 112233 y el DNN "internet2"
+assigning a new IMEI, and we modify S-NSSAI to use
+slice SD 112233 and DNN "internet2"
 
 </div>

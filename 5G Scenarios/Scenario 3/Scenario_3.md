@@ -6,17 +6,13 @@
 
 # (Scenario 3) Free5GC(VM)+2UPF(docker)+UERANSIM GNB(docker)/UE(docker)
 
-We continue increasing the complexity of the network configuration. Añadimos
-un segundo UPF, y por tanto otro DNN para dar acceso a Internet.
+We continue increasing the complexity of the network configuration. We add a second UPF, and then other DNN giving a new access to Internet.
 
-IMPORTANTE: solo hay 1 slice, aunque con dos DNN diferenciados. UE1
-utiliza “internet” y UE2 utiliza “internet2”
+IMPORTANT: There is only 1 slice, but 2 differentiated DNNs diferenciados. UE1 uses “internet” and UE2 uses “internet2”
 
 ![](images/165-1.png)
 
-## PREVIOUS STEP: activar GTP5G en GNS3 VM HV
-
-y activar FORWARDING
+## PREVIOUS STEP: To activate GTP5G in GNS3 VM HV activating FORWARDING
 
 We must ensure to repeat the steps indicated in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
@@ -31,11 +27,11 @@ The CORE network is based en el Template en con el nombre Free5GC_GNS3.
 We replicate the initial process described in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
 GNB(docker)/UE(docker)](5GTACTIC--GNS3--Training_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)_161.html),
-hasta llegar a los cambios de configuración del SMF.
+Until reaching all the changes into the SMF configuratoin.
 
 We ensure proper configuration of el UPF1:
 
-Cambios en:
+Changes in:
 
 <div class="codebox">
 
@@ -50,18 +46,17 @@ Cambios en:
 
 </div>
 
-And we add the new UPF2, modificando la estructura original del
-fichero, en la que hay dos NSSAI en el UPF. En este caso:
+And we add the new UPF2, modifying original file structure, with two NSSAI into the UPF. In this case:
 
-1.  duplicamos la estructura completa de UPF
-2.  renombramos la primera como UPF1 y la segunda como UPF2
-3.  dejamos en primer NSSAI para el UPF1, manteniendo el sd: 010203 y
-    dnn: internet (o comentamos el otro NSSAI con id:112233)
-4.  dejamos el primer NSSAI para el UPF2, con sd: 010203 pero dnn:
-    internet2, que aparece dos veces (Comentamos el otro NSSAI con id:
+1.  Duplicate complete structure for UPF
+2.  Rename the first as UPF1 and the second as UPF2
+3.  Maintain the first NSSAI for UPF1, with sd: 010203 and
+    dnn: internet (or coment NSSAI with id:112233)
+4.  Maintain the first NSSAI for UPF2, with sd: 010203 but dnn:
+    internet2, which appears twice (comment NSSAI with id:
     112233)
 
-We just need to add en los dos UPF, justo después del addr:
+We just need to add en los dos UPF, just after addr:
 
 <div class="codebox">
 
@@ -69,23 +64,23 @@ We just need to add en los dos UPF, justo después del addr:
 
 </div>
 
-En **Free5GC**, la opción `ulcl: false` se coloca dentro de la sección
-**`userplane_information`** del archivo `smfcfg.yaml`, específicamente
-en la definición del nodo UPF. Esto indica si el UPF soporta **ULCL
-(Uplink Classifier)**. Si `ulcl` está en `true`, el SMF intentará
-configurar reglas ULCL en el UPF, lo que puede fallar si el UPF no
-soporta esa función. Para la mayoría de pruebas con UERANSIM y Free5GC,
-se deja en `false`.
+Into **Free5GC**, `ulcl: false`optoion is allocated into the
+**`userplane_information`** section of `smfcfg.yaml` file, specifically inside
+the UPF node definition. This part indicates if UPF supports **ULCL
+(Uplink Classifier)**. If `ulcl` is `true`, SMF will try to
+configue all the ULCL rules into the UPF, but this coud fail if UPF did not
+support this function. For all the typical tests with UERANSIM and Free5GC its 
+values is `false`.
 
-En general:
+General rules:
 
-- Si **no** vas a usar arquitectura ULCL (split I‑UPF/PSA‑UPF), mantener
-  `ulcl: false` evita que el SMF genere reglas de clasificación uplink
-  que podrían fallar si el UPF no está preparado para ello.
-- Cuando uses un único UPF “todo en uno” (N3↔N6), pon `ulcl: false`.
-- Si algún día montas ULCL (varios UPFs con N9 entre ellos), el I‑UPF
-  llevaría `ulcl: true` y habría que añadir enlaces N9 en `interfaces` y
-  `links` acorde a esa topología.
+- If **no** uses ULCL architecture (split I‑UPF/PSA‑UPF), mantain
+  `ulcl: false`, avoiding that SMF could generate uplink classification rules
+  that could fail if UPF is not prepared for that.
+- If you uses a unique UPF “all-in-one” (N3↔N6), use `ulcl: false`.
+- If you want use ULCL (several UPFs with N9 between them), I‑UPF
+  uses `ulcl: true` and you would have to add N9 links into `interfaces` and
+  `links`, accordingly with this topology.
 
 The resulting file would be:
 
@@ -235,7 +230,7 @@ The resulting file would be:
 
 Now we need to modify el fichero amfcfg.yaml.
 
-Empezamos comprobando que la IP del AMF esté bien puesta:
+We start testing if AMF IP is correct:
 
 <div class="codebox">
 
@@ -245,7 +240,7 @@ Empezamos comprobando que la IP del AMF esté bien puesta:
 
 </div>
 
-Only one small change remains en la línea 57, añadiendo internet2:
+Only one small change remains en la línea 57, addinginternet2:
 
 <div class="codebox">
 
@@ -416,14 +411,14 @@ The file becomes:
 
 ![](images/165-3.png)
 
-We use un Template en GNS3 con el nombre “gitunican-UPF-free5gc”.
+We use un Template en GNS3 called “gitunican-UPF-free5gc”.
 
-The template includes dos interfaces, la primera para conectar a la CN
-(con IP 10.10.10.20/24 para UPF1 y 10.10.10.21/24 para UPF2), y la
-segunda para conectar a las NAT1 y NAT2, simulando dos DNN.
+The template includes 2 interfaces, first connecting to CN
+(with IP 10.10.10.20/24 for UPF1 and 10.10.10.21/24 for UPF2), and second
+one connects NAT1 and NAT2, our 2 DNN.
 
-El fichero **upfcfg.yaml** de UPF2 es idéntico que el de
-UPF1(10.10.10.20), pero con la IP de UPF2 (10.10.10.21):
+**upfcfg.yaml**  for UPF2 is equal than
+UPF1(10.10.10.20), but changing the IP of UPF2 (10.10.10.21):
 
 <div class="codebox">
 
@@ -463,9 +458,8 @@ UPF1(10.10.10.20), pero con la IP de UPF2 (10.10.10.21):
 
 </div>
 
-To route traffic a internet o internet2, hacmeos uso de “uerouting”,
-para lo cual hay que configurar el fichero uerouting.yaml, con el
-siguiente contenido:
+To route traffic to internet or internet2, we use “uerouting”,
+pconfiguring uerouting.yaml, with the next content:
 
 <div class="codebox">
 
@@ -499,12 +493,12 @@ siguiente contenido:
 
 ![](images/165-4.png)![](images/165-5.png)![](images/165-6.png)
 
-The docker containers we will use para el GNB y el UE son los que copian los
-ficheros de configuración, es decir los de [Autoconfigurar Docker
+The docker containers we will use for GNB and UE are the same as
+included configuration files, those are the same as [Autoconfigurar Docker
 UERANSIM](ning_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)--Autoconfigurar_Docker_UERANSIM_164.html)
 
-The configuration is identical, por lo que solo resta arrancar los Docker
-y lanzar el GNB y el UE.
+The configuration is identical, and you'd only have to run both Dockers
+and start GNB and UE.
 
 The UE2 file becomes:
 
@@ -593,12 +587,12 @@ The UE2 file becomes:
 
 </div>
 
-IMPORTANT: En el caso del fichero de configuración de UE2 hay que
-asegurarse que tiene como DNN a internet2
+IMPORTANT: UE2 configuration file has to specify
+that DNN is internet2
 
-You must register al segundo usuario, por lo que en el Webconsole
-creamos un perfil con la siguiente configuración (hay que cambiar el
-primer nssaid a "internet2")
+You must register the second user using Webconsole.
+Create a new profile with the following info (remmember to
+change nssaid to "internet2")
 
 ![](images/165-7.png)
 
@@ -610,19 +604,19 @@ primer nssaid a "internet2")
 
 ![](images/165-11.png)
 
-Once connected, remember que hay que configurar la ruta de
-salida en cada UE por la interfaz uesimtun0.
+Once connected, remember that you have to configure the outgoing 
+route for each UE though uesimtun0 interface.
 
-NOTA.- If it does not work el ping 8.8.8.8 desde el UE, check
-también la ruta por defecto del UPF, que debe salir por la NAT... probar
-a hacer PING a otra IP, por si acaso!!!
+NOTA.- If it does not work ping 8.8.8.8 from UE, check
+the default route to UPF too, going through NAT... Check 
+PING to other IP
 
-Capturamos en la interfaz 10.10.10.20 de UPF1 y hacemos ping a 8.8.8.8
-desde UE1:
+Capture into 10.10.10.20 of UPF1 and do ping to 8.8.8.8
+from UE1:
 
 ![](images/165-12.png)
 
-Capturamos en la interfaz 10.10.10.21 de UPF2 y hacemos ping a
-193.144.186.1 desde UE2:
+Capture into 10.10.10.21 of UPF2 and do ping to
+193.144.186.1 from UE2:
 
 ![](images/165-13.png)
