@@ -1,6 +1,5 @@
 # (Scenario 1) Free5GC (VM) + Ueransim GNB (docker) + Ueransim UE (docker)
 
-# Free5GC (VM) + Ueransim GNB (docker) + Ueransim UE (docker)
 
 This is the simplest possible configuration, where CORE and RAN are in the same network (10.10.10.0/24). All elements are interconnected through a simple switch. The Core node is the only one that has Internet access.
 

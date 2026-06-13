@@ -1,8 +1,5 @@
 <div class="page">
 
-# (Scenario 4) Scenario 3 + 2 slices
-
-\
 
 # (Scenario 4) 2 Slice - Free5GC(VM)+2UPF(docker)+UERANSIM GNB(docker)/UE(docker)
 
@@ -20,7 +17,7 @@ and configure FORWARDING
 
 We must ensure to repeat the steps indicated in [(Scenario 3)
 Free5GC(VM)+2UPF(docker)+UERANSIM
-GNB(docker)/UE(docker)](5GTACTIC--GNS3--Training_-_Configuraciones_GNS3--(Scenario_3)_Free5GC(VM)+2UPF(docker)+UERANSIM_GNB(docker)-UE(docker)_165.html)
+GNB(docker)/UE(docker)](../Scenario 3/Scenario_3.md)
 
 ## Core: FREE5GC
 
@@ -30,7 +27,7 @@ The CORE network is based on the template named Free5GC_GNS3.
 
 We replicate the initial process described in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
-GNB(docker)/UE(docker)](5GTACTIC--GNS3--Training_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)_161.html),
+GNB(docker)/UE(docker)](./Scenario 2/Scenario_2.md),
 until reaching the SMF configuration changes.
 
 We can start del smfcfg.yaml del Scenario 3, editing concrete parts of

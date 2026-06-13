@@ -1,7 +1,5 @@
 # (Scenario 2) Free5GC (VM) + UPF (docker) + UERANSIM GNB (docker) / UE (docker)
 
-# Free5GC (VM) + UPF (docker) + UERANSIM GNB (docker) / UE (docker)
-
 We continue testing simple configurations. In this case, the Free5GC network functions are executed in the VM, but without including the UPF, which is added as an external Docker. All elements remain in the same network (10.10.10.0/24), but Internet access is only available through the UPF (IMPORTANT: THIS MEANS THAT ONLY THE UE WILL HAVE INTERNET ACCESS ONCE CONNECTED!!!)
 
 Except for the UPF, all other elements are identical to those in Scenario 1, except that the NAT is connected only to the UPF, and the VM configuration must be modified.

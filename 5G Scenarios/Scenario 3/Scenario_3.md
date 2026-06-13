@@ -2,13 +2,9 @@
 
 # (Scenario 3) Free5GC(VM)+2UPF(docker)+UERANSIM GNB(docker)/UE(docker)
 
-\
-
-# (Scenario 3) Free5GC(VM)+2UPF(docker)+UERANSIM GNB(docker)/UE(docker)
-
 We continue increasing the complexity of the network configuration. We add a second UPF, and then other DNN giving a new access to Internet.
 
-IMPORTANT: There is only 1 slice, but 2 differentiated DNNs diferenciados. UE1 uses “internet” and UE2 uses “internet2”
+IMPORTANT: There is only 1 slice, but 2 differentiated DNNs. UE1 uses “internet” and UE2 uses “internet2”
 
 ![](images/165-1.png)
 
@@ -16,17 +12,17 @@ IMPORTANT: There is only 1 slice, but 2 differentiated DNNs diferenciados. UE1 u
 
 We must ensure to repeat the steps indicated in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
-GNB(docker)/UE(docker)](5GTACTIC--GNS3--Training_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)_161.html)
+GNB(docker)/UE(docker)](../Scenario 2/Scenario_2.md)
 
 ## Core: FREE5GC
 
 ![](images/165-2.png)
 
-The CORE network is based en el Template en con el nombre Free5GC_GNS3.
+The CORE network is based into the Free5G_GNS3 template.
 
 We replicate the initial process described in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
-GNB(docker)/UE(docker)](5GTACTIC--GNS3--Training_-_Configuraciones_GNS3--(Scenario2)_Free5GC(VM)_+_UPF(docker)_+_UERANSIM_GNB(docker)-UE(docker)_161.html),
+GNB(docker)/UE(docker)](../Scenario 2/Scenario_2.md),
 Until reaching all the changes into the SMF configuratoin.
 
 We ensure proper configuration of el UPF1:
@@ -35,14 +31,14 @@ Changes in:
 
 <div class="codebox">
 
-    linea 52      nodeID: 10.10.10.155 #127.0.0.1 # the Node ID of this SMF
-    línea 53      listenAddr: 10.10.10.155 #127.0.0.1 # the IP/FQDN of N4 interface on this SMF (PFCP)
-    línea 54       externalAddr: 10.10.10.155 #127.0.0.1 # the IP/FQDN of N4 interface on this SMF (PFCP)
+    line 52      nodeID: 10.10.10.155 #127.0.0.1 # the Node ID of this SMF
+    line 53      listenAddr: 10.10.10.155 #127.0.0.1 # the IP/FQDN of N4 interface on this SMF (PFCP)
+    line 54       externalAddr: 10.10.10.155 #127.0.0.1 # the IP/FQDN of N4 interface on this SMF (PFCP)
 
-    línea 66       nodeID: 10.10.10.20 #127.0.0.8 # the Node ID of this UPF
-    línea 67       addr: 10.10.10.20 #127.0.0.8 # the IP/FQDN of N4 interface on this UPF (PFCP)
+    line 66       nodeID: 10.10.10.20 #127.0.0.8 # the Node ID of this UPF
+    line 67       addr: 10.10.10.20 #127.0.0.8 # the IP/FQDN of N4 interface on this UPF (PFCP)
 
-    línea 94        - 10.10.10.155 #127.0.0.8
+    line 94        - 10.10.10.155 #127.0.0.8
 
 </div>
 
