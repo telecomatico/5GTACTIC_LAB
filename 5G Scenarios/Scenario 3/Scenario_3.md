@@ -12,7 +12,7 @@ IMPORTANT: There is only 1 slice, but 2 differentiated DNNs. UE1 uses “interne
 
 We must ensure to repeat the steps indicated in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
-GNB(docker)/UE(docker)](../Scenario 2/Scenario_2.md)
+GNB(docker)/UE(docker)](../Scenario%202/Scenario_2.md)
 
 ## Core: FREE5GC
 
@@ -22,7 +22,7 @@ The CORE network is based into the Free5G_GNS3 template.
 
 We replicate the initial process described in [(Scenario2)
 Free5GC(VM) + UPF(docker) + UERANSIM
-GNB(docker)/UE(docker)](../Scenario 2/Scenario_2.md),
+GNB(docker)/UE(docker)](../Scenario%202/Scenario_2.md),
 Until reaching all the changes into the SMF configuratoin.
 
 We ensure proper configuration of el UPF1:
