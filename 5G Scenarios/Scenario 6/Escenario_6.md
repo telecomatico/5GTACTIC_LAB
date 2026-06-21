@@ -3,8 +3,10 @@
 
 In this case, we are going to use a completely different configuration of Free5GC, this time based on a Docker deployment. The layout is simple because the main interest is being able to interact with the different elements of the 5G network. We start with a gNB and UE identical to previous scenarios, running on the GNS3-VM, the Free5GC deployment over Docker running on the HOST, and we connect the HOST to the scenario to use it as an attacking machine.
 
-Although we could use a specialized VM or Docker container, such as Kali Linux, or build a custom VM/Docker containing all the necessary tools, in many cases our host already includes everything required. Therefore, it can be beneficial to use them directly without duplicating functionalities.
+![](images/47-1.png)
 
+Although we could use a specialized VM or Docker container, such as Kali Linux, or build a custom VM/Docker containing all the necessary tools, in many cases our host already includes everything required. Therefore, it can be beneficial to use them directly without duplicating functionalities.
+![](images/47-2.png)
 ## The HOST as just another device in GNS3
 
 To integrate our HOST machine into GNS3 scenarios, it is necessary to use a virtual interface linked to a GNS3 Cloud node.
@@ -164,7 +166,7 @@ If you use `tap`:
 sudo chmod 666 /dev/net/tun
 
 ```
-
+![](images/47-3.png)
 # FREE5GC in DOCKER Format
 
 Source: [free5gc-compose/README.md at master · free5gc/free5gc-compose · GitHub](https://github.com/free5gc/free5gc-compose/blob/master/README.md)

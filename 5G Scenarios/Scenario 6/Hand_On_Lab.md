@@ -1,6 +1,8 @@
+---
 
 # Hands-on Lab
 
+![](images/191-1.png)
 *Note: When opening predefined scenarios in GNS3, errors related to docker containers might sometimes occur. This is normal when a scenario or GNS3 itself is closed abruptly. For this reason, it is advisable to remove stuck containers. To do so, run the following command:*
 
 ```bash
