@@ -1,5 +1,3 @@
----
-
 # Hands-on Lab
 
 ![](images/191-1.png)
