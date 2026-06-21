@@ -1,4 +1,3 @@
----
 
 # Hands-on Lab
 
